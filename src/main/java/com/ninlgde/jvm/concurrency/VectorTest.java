@@ -2,32 +2,29 @@ package com.ninlgde.jvm.concurrency;
 
 import java.util.Vector;
 
-public class VectorTest
-{
-	private static Vector<Integer> vector = new Vector<>();
+public class VectorTest {
+    private static Vector<Integer> vector = new Vector<>();
 
-	public static void main(String[] args)
-	{
-		while (true)
-		{
-			for (int i = 0; i < 10; i++)
-				vector.add(i);
+    public static void main(String[] args) {
+        while (true) {
+            for (int i = 0; i < 10; i++)
+                vector.add(i);
 
-			Thread removeThread = new Thread(() -> {
-				for (int i = 0; i < vector.size(); i++)
-					vector.remove(i);
-			});
+            Thread removeThread = new Thread(() -> {
+                for (int i = 0; i < vector.size(); i++)
+                    vector.remove(i);
+            });
 
-			Thread printThread = new Thread(() -> {
-				for (int i = 0; i < vector.size(); i++)
-					System.out.println(vector.get(i));
-			});
+            Thread printThread = new Thread(() -> {
+                for (int i = 0; i < vector.size(); i++)
+                    System.out.println(vector.get(i));
+            });
 
-			removeThread.start();
-			printThread.start();
+            removeThread.start();
+            printThread.start();
 
-			while (Thread.activeCount() > 20)
-				;
-		}
-	}
+            while (Thread.activeCount() > 20)
+                ;
+        }
+    }
 }

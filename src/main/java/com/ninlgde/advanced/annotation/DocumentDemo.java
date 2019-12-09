@@ -16,24 +16,26 @@ import java.util.Arrays;
 }
 
 @DocumentA
-class A{ }
+class A {
+}
 
-class B extends A{ }
+class B extends A {
+}
 
 @DocumentB
-class C{ }
+class C {
+}
 
-class D extends C{ }
+class D extends C {
+}
 
-public class DocumentDemo
-{
-	public static void main(String[] args)
-	{
-		A instanceA=new B();
-		System.out.println("已使用的@Inherited注解:"+ Arrays.toString(instanceA.getClass().getAnnotations()));
+public class DocumentDemo {
+    public static void main(String[] args) {
+        A instanceA = new B();
+        System.out.println("已使用的@Inherited注解:" + Arrays.toString(instanceA.getClass().getAnnotations()));
 
-		C instanceC = new D();
+        C instanceC = new D();
 
-		System.out.println("没有使用的@Inherited注解:"+Arrays.toString(instanceC.getClass().getAnnotations()));
-	}
+        System.out.println("没有使用的@Inherited注解:" + Arrays.toString(instanceC.getClass().getAnnotations()));
+    }
 }

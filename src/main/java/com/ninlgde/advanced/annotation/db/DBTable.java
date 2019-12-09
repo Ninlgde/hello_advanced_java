@@ -11,7 +11,6 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.TYPE)//只能应用于类上
 @Retention(RetentionPolicy.RUNTIME)//保存到运行时
-public @interface DBTable
-{
-	String name() default "";
+public @interface DBTable {
+    String name() default "";
 }

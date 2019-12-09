@@ -9,8 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * @author Brian Goetz and Tim Peierls
  */
-public class DynamicOrderDeadlock
-{
+public class DynamicOrderDeadlock {
     // Warning: deadlock-prone!
     public static void transferMoney(Account fromAccount,
                                      Account toAccount,

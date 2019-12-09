@@ -1,13 +1,10 @@
-public class DL
-{
-	private static DL ourInstance = new DL();
+public class DL {
+    private static DL ourInstance = new DL();
 
-	public static DL getInstance()
-	{
-		return ourInstance;
-	}
+    public static DL getInstance() {
+        return ourInstance;
+    }
 
-	private DL()
-	{
-	}
+    private DL() {
+    }
 }
