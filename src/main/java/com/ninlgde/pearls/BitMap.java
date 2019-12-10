@@ -1,7 +1,7 @@
 package com.ninlgde.pearls;
 
 public class BitMap {
-    public static final int BIT_SPER_WORD = 32;
+    public static final int BITS_PER_WORD = 32;
     private static final int SHIFT = 5;
     private static final int MASK = 0x1f;
 
