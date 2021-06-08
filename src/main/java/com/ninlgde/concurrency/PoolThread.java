@@ -3,7 +3,7 @@ package com.ninlgde.concurrency;
 public class PoolThread extends Thread {
 
     private BlockingQueue<Runnable> taskQueue;
-    private boolean isStopped = false;
+    private volatile boolean isStopped = false;
 
     public PoolThread(BlockingQueue<Runnable> queue) {
         taskQueue = queue;

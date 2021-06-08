@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace属性是名称空间，必须唯一 -->
+<mapper namespace="StudentMapper">
+
+    <!-- resultMap标签:映射实体与表
+         type属性：表示实体全路径名
+         id属性：为实体与表的映射取一个任意的唯一的名字
+    -->
+    <resultMap type="com.ninlgde.db.mybatis.entity.Student" id="studentMap">
+        <!-- id标签:映射主键属性
+             result标签：映射非主键属性
+             property属性:实体的属性名
+             column属性：表的字段名
+        -->
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sal" column="sal"/>
+    </resultMap>
+
+    <insert id="add" parameterType="com.ninlgde.db.mybatis.entity.Student">
+		INSERT INTO students (id, name, sal) VALUES (#{id},#{name},#{sal});
+	</insert>
+
+    <!--
+		查询根据id
+		resultMap这个属性代表是返回值类型，返回值的类型是Student，就是上面实体类型
+	-->
+    <select id="findById" parameterType="int" resultMap="studentMap">
+		SELECT * FROM students WHERE id = #{id};
+	</select>
+
+    <!--
+		查询所有数据
+		返回值类型讲道理是List<Student>的，但我们只要写集合中的类型就行了
+	-->
+    <select id="findAll" resultMap="studentMap">
+		SELECT * FROM students;
+	</select>
+
+    <!--根据id删除-->
+    <delete id="delete" parameterType="int">
+		DELETE FROM students WHERE id=#{id};
+	</delete>
+
+    <!--更新-->
+    <update id="update" parameterType="com.ninlgde.db.mybatis.entity.Student">
+		update students set name=#{name},sal=#{sal} where id=#{id};
+	</update>
+
+    <!--分页查询-->
+    <select id="pagination" parameterType="map" resultMap="studentMap">
+		/*根据key自动找到对应Map集合的value*/
+		select * from students limit #{start},#{end};
+	</select>
+
+    <!--多条件查询【动态SQL】-->
+    <!--会自动组合成一个正常的WHERE字句-->
+    <!--name值会从map中寻找-->
+    <select id="findByCondition" resultMap="studentMap" parameterType="map">
+        select * from students
+        <where>
+            <if test="name!=null">
+                and name=#{name}
+            </if>
+            <if test="sal!=null">
+                and sal &lt; #{sal}
+            </if>
+        </where>
+    </select>
+
+    <!--动态更新-->
+    <!--不要忘了逗号-->
+    <update id="updateByConditions" parameterType="map">
+        update students
+        <set>
+            <if test="name!=null">
+                name = #{name},
+            </if>
+            <if test="sal!=null">
+                sal = #{sal},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteByConditions" parameterType="int">
+        <!-- foreach用于迭代数组元素
+             open表示开始符号
+             close表示结束符合
+             separator表示元素间的分隔符
+             item表示迭代的数组，属性值可以任意，但提倡与方法的数组名相同
+             #{ids}表示数组中的每个元素值
+         -->
+        delete from students where id in
+        <foreach collection="array" open="(" close=")" separator="," item="ids">
+            #{ids}
+        </foreach>
+    </delete>
+
+    <!--SQL片段默认是不帮我们自动生成合适的SQL，因此需要我们自己手动除去逗号-->
+    <sql id="key">
+        <trim suffixOverrides=",">
+            <if test="id!=null">
+                id,
+            </if>
+
+            <if test="id!=null">
+                name,
+            </if>
+
+            <if test="id!=null">
+                sal,
+            </if>
+        </trim>
+    </sql>
+    <sql id="value">
+        <trim suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+
+            <if test="id!=null">
+                #{name},
+            </if>
+
+            <if test="id!=null">
+                #{sal},
+            </if>
+        </trim>
+    </sql>
+    <!--动态插入-->
+    <insert id="insertByConditions" parameterType="com.ninlgde.db.mybatis.entity.Student">
+        insert into students (<include refid="key"/>) values
+        (<include refid="value"/>)
+    </insert>
+</mapper>

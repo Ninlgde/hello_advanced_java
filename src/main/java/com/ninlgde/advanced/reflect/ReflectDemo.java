@@ -99,6 +99,6 @@ class User {
 
     @Override
     public String toString() {
-        return "User [age=" + age + " name=" + name + "]";
+        return "com.ninlgde.rpc.thrift.User [age=" + age + " name=" + name + "]";
     }
 }

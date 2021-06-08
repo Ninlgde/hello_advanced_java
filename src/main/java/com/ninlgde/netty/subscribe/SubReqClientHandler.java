@@ -1,20 +1,21 @@
 package com.ninlgde.netty.subscribe;
 
 import com.ninlgde.netty.protobuf.SubscribeReqProto;
+import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubReqClientHandler extends ChannelHandlerAdapter {
+public class SubReqClientHandler extends ChannelDuplexHandler {
     public SubReqClientHandler() {
 
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 2; i++) {
             ctx.write(subReq(i));
         }
         ctx.flush();

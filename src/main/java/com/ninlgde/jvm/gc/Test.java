@@ -74,6 +74,6 @@ public class Test {
     public static void main(String[] args) {
         //		testAllocation();
         //		testPretenureSizeThreshold();
-        testHandlePromotion();
+        testTenuringThreshold();
     }
 }

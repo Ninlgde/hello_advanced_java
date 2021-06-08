@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.ucg.jackpot.demo.proto.user";
+option java_outer_classname = "UserProto";
+option objc_class_prefix = "USP";
+
+package PB.user;
+
+message REQ_GetUserInfo {
+  int32 userId = 1;
+}
+
+message RES_GetUserInfo {
+  int32 result = 1;
+  string userName = 2;
+  string userPhoto = 3;
+  string phoneNumber = 4;
+  int32 age = 5;
+  int64 chips = 6;
+}
+
+message SYN_UserGameData {
+  int32 gameId = 1;
+}

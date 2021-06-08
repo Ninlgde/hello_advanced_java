@@ -1,7 +1,9 @@
 package com.ninlgde.jvm.clazz;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
+import java.lang.reflect.Field;
 
 import static java.lang.invoke.MethodHandles.lookup;
 
@@ -22,7 +24,9 @@ public class MethodHandleTest2 {
         void thinking() {
             try {
                 MethodType mt = MethodType.methodType(void.class);
-                MethodHandle mh = lookup().findSpecial(GrandFather.class, "thinking", mt, getClass());
+                Field lookupImpl = MethodHandles.Lookup.class.getDeclaredField("IMPL_LOOKUP");
+                lookupImpl.setAccessible(true);
+                MethodHandle mh = ((MethodHandles.Lookup)lookupImpl.get(null)).findSpecial(GrandFather.class, "thinking", mt, GrandFather.class);
                 mh.invoke(this);
             } catch (Throwable e) {
 

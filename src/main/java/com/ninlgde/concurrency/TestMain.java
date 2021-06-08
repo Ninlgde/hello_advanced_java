@@ -5,16 +5,14 @@ public class TestMain {
             throws InterruptedException {
         final Counter c = new Counter();
         for (int i = 0; i < 10; i++) {
-            new Thread() {
-                public void run() {
-                    for (int i = 0; i < 100; i++) {
-                        c.add(1);
-                        c.add2(1);
-                        c.add3(1);
-                        c.add4(1);
-                    }
+            new Thread(() -> {
+                for (int i1 = 0; i1 < 100; i1++) {
+                    c.add(1);
+                    c.add2(1);
+                    c.add3(1);
+                    c.add4(1);
                 }
-            }.start();
+            }).start();
         }
 
         Thread.sleep(1000);

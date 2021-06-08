@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ReadWriteLock {
-    private Map<Thread, Integer> readingThreads = new HashMap<>();
+    private final Map<Thread, Integer> readingThreads = new HashMap<>();
 
     private int writeAccesses = 0;
     private int writeRequests = 0;
-    private Thread writingThread = null;
+    private volatile Thread writingThread = null;
 
     public synchronized void lockRead()
             throws InterruptedException {
@@ -83,10 +83,7 @@ public class ReadWriteLock {
     }
 
     private int getReadAccessCount(Thread callingThread) {
-        Integer accessCount = readingThreads.get(callingThread);
-        if (accessCount == null)
-            return 0;
-        return accessCount.intValue();
+        return readingThreads.getOrDefault(callingThread, 0);
     }
 
     private boolean hasReaders() {
@@ -94,11 +91,11 @@ public class ReadWriteLock {
     }
 
     private boolean isReader(Thread callingThread) {
-        return readingThreads.get(callingThread) != null;
+        return readingThreads.containsKey(callingThread);
     }
 
     private boolean isOnlyReader(Thread callingThread) {
-        return readingThreads.size() == 1 && readingThreads.get(callingThread) != null;
+        return readingThreads.size() == 1 && readingThreads.containsKey(callingThread);
     }
 
     private boolean hasWriter() {
@@ -110,6 +107,6 @@ public class ReadWriteLock {
     }
 
     private boolean hasWriteRequests() {
-        return this.writeRequests > 0;
+        return writeRequests > 0;
     }
 }

@@ -1,6 +1,12 @@
 package com.ninlgde.advanced.reflect;
 
+import com.ninlgde.jcip.annotations.Immutable;
+import com.ninlgde.jcip.annotations.ThreadSafe;
+import io.protostuff.Request;
+import org.apache.ibatis.annotations.Param;
+
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 /**
  * Created by zejian on 2017/5/1.
@@ -14,9 +20,9 @@ public class ReflectMethod {
         Class clazz = Circle.class; //Class.forName("com.ninlgde.advanced.reflect.Circle");
 
         //根据参数获取public的Method,包含继承自父类的方法
-        Method method = clazz.getMethod("draw", int.class, String.class);
+//        Method method = clazz.getMethod("draw", int.class, String.class);
 
-        System.out.println("method:" + method);
+//        System.out.println("method:" + method);
 
         //获取所有public的方法:
         Method[] methods = clazz.getMethods();
@@ -34,6 +40,15 @@ public class ReflectMethod {
         for (Method m : methods1) {
             System.out.println("m1::" + m);
         }
+
+        for (Method m : methods) {
+            Parameter[] ps = m.getParameters();
+            for (Parameter p : ps) {
+                if (p.isAnnotationPresent(Param.class)) {
+                    System.out.println(p.getType());
+                }
+            }
+        }
     }
 }
 
@@ -42,7 +57,7 @@ class Shape {
         System.out.println("draw");
     }
 
-    public void draw(int count, String name) {
+    public void draw(int count, @Param("") Circle name) {
         System.out.println("draw " + name + ",count=" + count);
     }
 

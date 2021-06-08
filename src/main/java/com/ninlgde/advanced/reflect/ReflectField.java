@@ -1,5 +1,7 @@
 package com.ninlgde.advanced.reflect;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.lang.reflect.Field;
 
 /**
@@ -14,6 +16,9 @@ public class ReflectField {
         // 否则抛NoSuchFieldException
         Field field = clazz.getField("age");
         System.out.println("field:" + field);
+
+        JSONField a = field.getAnnotation(JSONField.class);
+        System.out.println(a.serialize());
 
         //获取所有修饰符为public的字段,包含父类字段,注意修饰符为public才会获取
         Field fields[] = clazz.getFields();
@@ -46,9 +51,14 @@ public class ReflectField {
 }
 
 class Person {
+    @JSONField
     public int age;
     public String name;
     //省略set和get方法
+
+    public int getAge() {
+        return age;
+    }
 }
 
 class Student extends Person {

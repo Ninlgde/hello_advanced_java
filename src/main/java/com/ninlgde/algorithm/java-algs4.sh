@@ -1,0 +1,1 @@
+java -cp ../../../:algs4.jar  com/ninlgde/algorithm/"$@"

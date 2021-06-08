@@ -4,18 +4,23 @@ public class ThreadLocalExample {
 
     public static class MyRunnable implements Runnable {
 
-        private ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>();
+        private static ThreadLocal<Integer> threadLocal = new ThreadLocal<>();
 
         @Override
         public void run() {
-            threadLocal.set((int) (Math.random() * 100D));
-
             try {
-                Thread.sleep(threadLocal.get() * 50);
-            } catch (InterruptedException e) {
-            }
+                threadLocal.set((int) (Math.random() * 100D));
 
-            System.out.println(Thread.currentThread().getName() + ' ' + threadLocal.get());
+                try {
+                    Thread.sleep(threadLocal.get() * 50);
+                } catch (InterruptedException ignored) {
+                }
+
+                System.out.println(Thread.currentThread().getName() + ' ' + threadLocal.get());
+            } finally {
+                // key是weak reference 如果线程长期运行且用完ThreadLocal不删除可能导致内存泄漏
+                threadLocal.remove();
+            }
         }
     }
 

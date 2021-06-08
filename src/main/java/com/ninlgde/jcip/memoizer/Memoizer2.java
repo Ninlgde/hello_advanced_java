@@ -1,0 +1,30 @@
+package com.ninlgde.jcip.memoizer;
+
+import com.ninlgde.jcip.annotations.ThreadSafe;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ * @author: ninlgde
+ * @date: 11/24/20 4:11 PM
+ */
+@ThreadSafe
+public class Memoizer2<A, V> implements Computable<A, V> {
+    private final Map<A, V> cache = new ConcurrentHashMap<>();
+    private final Computable<A, V> c;
+
+    public Memoizer2(Computable<A, V> c) {
+        this.c = c;
+    }
+
+    @Override
+    public V compute(A arg) throws InterruptedException {
+        V result = cache.get(arg);
+        if (result == null) {
+            result = c.compute(arg);
+            cache.put(arg, result);
+        }
+        return result;
+    }
+}

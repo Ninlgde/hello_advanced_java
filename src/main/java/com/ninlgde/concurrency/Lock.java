@@ -1,5 +1,9 @@
 package com.ninlgde.concurrency;
 
+/**
+ * 不可重入锁
+ * 参考LockTest
+ */
 public class Lock {
 
     private boolean isLocked = false;

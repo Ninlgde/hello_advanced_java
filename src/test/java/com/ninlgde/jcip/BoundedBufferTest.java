@@ -92,7 +92,7 @@ public class BoundedBufferTest {
     public void testTimePutTake()
             throws InterruptedException {
         int tpt = 100000;
-        for (int cap = 1; cap <= 1000; cap *= 10) {
+        for (int cap = 10; cap <= 1000; cap *= 10) {
             System.out.println("Capacity: " + cap);
             for (int pairs = 1; pairs <= 128; pairs *= 2) {
                 long startTime = System.nanoTime();

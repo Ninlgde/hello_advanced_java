@@ -26,8 +26,8 @@ public class PossibleReordering {
             one.join();
 
             i++;
-            System.out.println("第" + i + "次尝试( " + x + "," + y + " )");
 
         } while (x != 0 || y != 0);
+        System.out.println("第" + i + "次尝试( " + x + "," + y + " )");
     }
 }

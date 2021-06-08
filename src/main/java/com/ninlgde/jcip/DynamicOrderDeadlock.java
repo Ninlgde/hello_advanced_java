@@ -1,6 +1,10 @@
 package com.ninlgde.jcip;
 
+import com.ninlgde.jcip.annotations.Immutable;
+
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * DynamicOrderDeadlock
@@ -27,22 +31,34 @@ public class DynamicOrderDeadlock {
         }
     }
 
+//    public boolean transferMoney(Account fromAccount,
+//                                 Account toAccount,
+//                                 DollarAmount amount,
+//                                 long timeout,
+//                                 TimeUnit unit)
+//            throws InsufficientFundsException, InterruptedException {
+//        long fixedDelay = getF
+//    }
+
+    @Immutable
     static class DollarAmount implements Comparable<DollarAmount> {
         // Needs implementation
+        private final int amount;
 
         public DollarAmount(int amount) {
+            this.amount = amount;
         }
 
         public DollarAmount add(DollarAmount d) {
-            return null;
+            return new DollarAmount(amount + d.amount);
         }
 
         public DollarAmount subtract(DollarAmount d) {
-            return null;
+            return new DollarAmount(amount - d.amount);
         }
 
         public int compareTo(DollarAmount dollarAmount) {
-            return 0;
+            return amount - dollarAmount.amount;
         }
     }
 

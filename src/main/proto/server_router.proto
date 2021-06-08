@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.ucg.jackpot.demo.proto.server_router";
+option java_outer_classname = "ServerRouterProto";
+option objc_class_prefix = "SRP";
+
+package server_router;
+
+enum Server {
+  none = 0;
+  lobby = 1;
+  user = 2;
+}

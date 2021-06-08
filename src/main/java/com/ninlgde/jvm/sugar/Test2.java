@@ -12,6 +12,7 @@ public class Test2 {
 
         System.out.println(c == d);
         System.out.println(e == f);
+        System.out.println(e.equals(f));
         System.out.println(c == (a + b));
         System.out.println(c.equals(a + b));
         System.out.println(g == (a + b));

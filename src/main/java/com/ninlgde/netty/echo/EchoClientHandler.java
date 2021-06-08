@@ -1,12 +1,13 @@
 package com.ninlgde.netty.echo;
 
 import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandler;
-import io.netty.channel.ChannelHandlerAppender;
+import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 
 @ChannelHandler.Sharable
-public class EchoClientHandler extends ChannelHandlerAppender {
+public class EchoClientHandler extends ChannelDuplexHandler {
     private int counter;
 
     static final String ECHO_REQ = "123.$_";

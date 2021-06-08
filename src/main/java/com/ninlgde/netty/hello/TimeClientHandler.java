@@ -2,13 +2,14 @@ package com.ninlgde.netty.hello;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Logger;
 
-public class TimeClientHandler extends ChannelHandlerAdapter {
+public class TimeClientHandler extends ChannelDuplexHandler {
     private static final Logger logger = Logger.getLogger(TimeClientHandler.class.getName());
 
     private int counter;

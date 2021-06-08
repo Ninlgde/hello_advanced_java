@@ -2,7 +2,7 @@ package com.ninlgde.concurrency;
 
 public class QueueObject {
 
-    private boolean isNotified = false;
+    private volatile boolean isNotified = false;
 
     public synchronized void doWait() throws InterruptedException {
         while (!isNotified) {
