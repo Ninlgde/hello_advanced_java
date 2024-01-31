@@ -46,7 +46,7 @@ public class FunnelRateLimiter {
         }
     }
 
-    private Map<String, Funnel> funnels = new HashMap<>();
+    private final Map<String, Funnel> funnels = new HashMap<>();
 
     public boolean isActionAllowed(String userId, String actionKey, int capacity, float leakingRate) {
         String key = String.format("%s:%s", userId, actionKey);

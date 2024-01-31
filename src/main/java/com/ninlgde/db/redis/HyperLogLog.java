@@ -1,8 +1,8 @@
 package com.ninlgde.db.redis;
 
 public class HyperLogLog {
-    private int k;
-    private BitKeeper[] keepers;
+    private final int k;
+    private final BitKeeper[] keepers;
 
     public HyperLogLog() {
         this(1024);

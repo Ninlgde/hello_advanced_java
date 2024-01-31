@@ -1,5 +1,7 @@
 package com.ninlgde.advanced.enumdemo;
 
+import java.util.EnumSet;
+
 /**
  * Created by zejian on 2017/5/7.
  * Blog : http://blog.csdn.net/javazejian [原文地址,请尊重原创]
@@ -44,6 +46,9 @@ public class EnumDemo {
         Day d2 = Day.valueOf(Day.class, days[0].name());
         System.out.println("d:" + d);
         System.out.println("d2:" + d2);
+
+        EnumSet<Day> allDays = EnumSet.allOf(Day.class);
+        System.out.println(allDays);
     }
 }
 

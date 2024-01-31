@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.Random;
 
 public class AddSingleTableData {
-    private static String[] randomStrings = {"abc", "xyz", "sjfks", "sjfee", "23dakdj", "jfksli39",
+    private static final String[] randomStrings = {"abc", "xyz", "sjfks", "sjfee", "23dakdj", "jfksli39",
                                         "jfei399", "jlksf3oi", "ji3nsv", "3ijnmd", "ioufweu",
                                         "j3fnv", "3jfifj", "jlsfien9", "3ffen", "jvi9vsv",
                                         "ksjfie034", "oijfj", "349fnvs", "a", "b", "c", "x", "y", "z"};

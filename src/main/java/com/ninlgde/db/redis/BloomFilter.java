@@ -13,9 +13,9 @@ import com.google.common.hash.Hashing;
 
 public class BloomFilter {
     // k 向上取整
-    private int ik;
+    private final int ik;
     // m 向上取整
-    private int im;
+    private final int im;
     // 大于m的2次幂
     private int mp = 1;
 
@@ -28,7 +28,7 @@ public class BloomFilter {
     private final BitSet bitSet;
 
     // hash functions
-    private List<HashFunction> hashFunctions = new ArrayList<>();
+    private final List<HashFunction> hashFunctions = new ArrayList<>();
 
     /**
      * bloom过滤
@@ -86,7 +86,7 @@ public class BloomFilter {
     // 10% 需要3.32 1%需要6.64 0.1%需要9.96 0.01%需要13.28 0.001%需要16.60
     // 现在有17个,支持的概率应该为100%-0.0008%
     // 其实也可以在构造函数里随机获取数字,不过效果差不多.
-    private int[] seeds = new int[]{3, 5, 7, 11, 13, 17, 23, 29, 31, 33, 37, 45, 48, 51, 57, 61, 63};
+    private final int[] seeds = new int[]{3, 5, 7, 11, 13, 17, 23, 29, 31, 33, 37, 45, 48, 51, 57, 61, 63};
 
     private int hash(String value, int i) {
         HashCode hascode = hashFunctions.get(i).hashString(value, StandardCharsets.UTF_8);

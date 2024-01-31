@@ -1,5 +1,7 @@
 package com.ninlgde.advanced.forkjoin;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 
@@ -49,7 +51,9 @@ public class FibTask extends ForkJoinTask<Long> {
     }
 
     public static void main(String[] args) {
-        int n = 50;
+        List<Integer> numberList = Arrays.asList(1,2,3,4,5,6,7,8,9);
+        numberList.parallelStream().forEach(System.out::println);
+        int n = 45;
         ForkJoinPool pool = new ForkJoinPool();
         FibTask task = new FibTask(n);
 

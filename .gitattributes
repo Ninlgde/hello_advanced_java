@@ -1,0 +1,2 @@
+src/main/java/com/ninlgde/algorithm/data/large*.txt filter=lfs diff=lfs merge=lfs -text
+src/main/java/com/ninlgde/algorithm/data/leipzig1M.txt filter=lfs diff=lfs merge=lfs -text

@@ -13,6 +13,9 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EchoClient {
     public void connect(String host, int port)
             throws Exception {
@@ -43,7 +46,7 @@ public class EchoClient {
         int port = 8080;
         if (args != null && args.length > 0) {
             try {
-                port = Integer.valueOf(args[0]);
+                port = Integer.parseInt(args[0]);
             } catch (NumberFormatException e) {
                 // do nothing
             }

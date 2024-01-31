@@ -38,10 +38,9 @@ public class RouteGuideServer {
      */
     public RouteGuideServer(ServerBuilder<?> serverBuilder, int port, Collection<Feature> features) {
         this.port = port;
-        server = serverBuilder
-                .addService(new RouteGuideService(features))
-                .addService(new GreeterService())
-                .build();
+        serverBuilder = serverBuilder.addService(new RouteGuideService(features));
+        serverBuilder = serverBuilder.addService(new GreeterService());
+        server = serverBuilder.build();
     }
 
 
@@ -91,5 +90,6 @@ public class RouteGuideServer {
         RouteGuideServer server = new RouteGuideServer(50051);
         server.start();
         server.blockUntilShutdown();
+        System.out.println("server started!!!!");
     }
 }

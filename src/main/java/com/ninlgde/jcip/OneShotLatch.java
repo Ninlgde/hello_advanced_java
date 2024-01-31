@@ -17,7 +17,7 @@ public class OneShotLatch {
         sync.acquireSharedInterruptibly(0);
     }
 
-    private class Sync extends AbstractQueuedSynchronizer {
+    private static class Sync extends AbstractQueuedSynchronizer {
         protected int tryAcquireShared(int ignored) {
             return (getState() == 1) ? 1 : -1;
         }

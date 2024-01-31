@@ -67,6 +67,7 @@ public abstract class Heap<E extends Comparable<E>> {
         E[] newHeap = (E[]) new Comparable[k];
         System.arraycopy(heap, 0, newHeap, 0, size);
         heap = newHeap;
+        capacity = k;
     }
 
     public void push(E v) {

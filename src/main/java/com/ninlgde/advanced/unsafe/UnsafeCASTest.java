@@ -38,7 +38,7 @@ public class UnsafeCASTest {
 //
 //        int ageOffset = 12;
 //        // 修改内存偏移地址为12的值（age）,返回true,说明通过内存偏移地址修改age的值成功
-//        System.out.println(unsafe.compareAndSwapInt(player, ageOffset, 0, 20));
+//        System.out.println(unsafe.compareAndExchangeInt(player, ageOffset, 0, 20));
 //        System.out.println("age修改后的值：" + player.getAge());
 //        System.out.println("-------------------");
 //
