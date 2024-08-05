@@ -105,7 +105,7 @@
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
-            <version>3.12.5</version>
+            <version>3.22.0</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -127,7 +127,7 @@
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
-            <version>3.12.5</version>
+            <version>3.22.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
         <dependency>
